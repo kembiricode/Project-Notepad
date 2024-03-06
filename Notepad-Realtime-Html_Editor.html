@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real-time Notepad HTML Editor</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  #editor {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow: auto;
+  }
+</style>
+</head>
+<body>
+<div id="editor" contenteditable="true"></div>
+<script>
+  const editor = document.getElementById('editor');
+
+  editor.addEventListener('input', () => {
+    const html = editor.innerHTML;
+    localStorage.setItem('savedContent', html);
+  });
+
+  window.onload = () => {
+    const savedContent = localStorage.getItem('savedContent');
+    if (savedContent) {
+      editor.innerHTML = savedContent;
+    }
+  };
+</script>
+</body>
+</html>
